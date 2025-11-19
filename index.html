@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>O1 Order Disputes Agent Demo</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    iframe { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>O1 – Order Disputes Agent Demo</h1>
+  <p>This is a demo of the n8n AI agent, embedded in a simple page.</p>
+
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://operator-one.app.n8n.cloud/webhook/772a60b1-a50b-4f2e-b266-e23fd606bf1f/chat'
+        });
+    </script>
+
+</body>
+</html>
