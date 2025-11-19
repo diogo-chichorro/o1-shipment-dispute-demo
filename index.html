@@ -1,32 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>O1 Order Disputes Agent Demo</title>
+  <title>O1 Login</title>
   <meta charset="UTF-8">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    #n8n-chat { margin-top: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f1f1f1;
+    }
+    #login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      border: none;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
   </style>
-
-  <!-- n8n Chat Widget CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-
-  <!-- n8n Chat Widget JS -->
-  <script type="module">
-      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-      createChat({
-          webhookUrl: 'https://operator-one.app.n8n.cloud/webhook/772a60b1-a50b-4f2e-b266-e23fd606bf1f/chat'
-      });
-  </script>
 </head>
-
 <body>
-  <h1>O1 – Order Disputes Agent Demo</h1>
-  <p>AI Agent is in the bottom-right corner, feel free to test it out :)</p>
 
-  <!-- Container for chat -->
-  <div id="n8n-chat"></div>
+<div id="login-box">
+  <h2>Login</h2>
+  <input id="username" type="text" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <div id="error">Invalid username or password</div>
+</div>
+
+<script>
+  function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === "o1-test" && pass === "o123") {
+      // Store session so refresh doesn't force login
+      sessionStorage.setItem("loggedIn", "true");
+      window.location.href = "chat.html";
+    } else {
+      document.getElementById("error").style.display = "block";
+    }
+  }
+
+  // Auto-redirect if already logged in
+  if (sessionStorage.getItem("loggedIn") === "true") {
+    window.location.href = "chat.html";
+  }
+</script>
 
 </body>
 </html>
